@@ -1,0 +1,92 @@
+
+/**************************
+        Border Radius
+**************************/
+
+$border-radius-button: 6px;
+$border-radius-card: 12px;
+$border-radius-small-card: 6px;
+
+@media all and (max-width: 676px) {
+   
+}
+
+
+/**************************
+        Colors
+**************************/
+
+$dark-500: #101011;
+$dark-450: #161616;
+$dark-400: #1B1B1B;
+$dark-100: #5B5959;
+
+$dark-gradient: linear-gradient(to bottom right, $dark-400, $dark-450);
+
+$purple-700: #5542F6;
+$purple-500: #7362FF;
+$purple-400: #887AFF;
+
+$light-700: #8D8D8D;
+$light-200: #F0F0F0;
+$light-100: #FFFFFF;
+
+
+:root {
+    --border-radius-button: #{$border-radius-button};
+    --border-radius-card: #{$border-radius-card};
+
+    --color-bg-primary: #{$light-200};
+    --color-bg-secondary: #{$light-100};
+    --color-bg-card: #{$light-200};
+
+    --color-box-shadow: #{rgba($dark-100, 0.4)};
+
+    --color-primary-dark: #{$purple-700};
+    --color-primary-medium: #{$purple-500};
+    --color-primary-light: #{$purple-400};
+
+    --color-text-title: #{$dark-500};
+    --color-text-subtitle: #{$purple-400};
+    --color-text-body: #{$dark-100};
+    --color-text-card-title: #{$light-100};
+    --color-text-card-subtext: #{$light-700};
+    --color-text-link: #{$purple-500};
+
+    --color-btn-primary-background: #{$purple-700};
+    --color-btn-primary-bg-hover: #{$purple-500};
+    --color-btn-primary-text: #{$light-100};
+    --color-btn-outline: #{$purple-700};
+}
+
+@media (prefers-color-scheme: dark), (prefers-color-scheme: no-preference) {
+    :root {
+        --color-bg-primary: #{$dark-500};
+        --color-bg-secondary: #{$dark-400};
+        --color-bg-card: #{$dark-gradient};
+
+        --color-box-shadow: #{rgba($dark-500, 0.4)};
+
+        --color-primary-dark: #{$purple-700};
+        --color-primary-medium: #{$purple-500};
+        --color-primary-light: #{$purple-400};
+
+        --color-text-title: #{$light-100};
+        --color-text-subtitle: #{$purple-400};
+        --color-text-body: #{$light-700};
+        --color-text-card-title: #{$light-100};
+        --color-text-card-subtext: #{$light-700};
+        --color-text-link: #{$purple-400};
+
+        --color-btn-primary-background: #{$purple-700};
+        --color-btn-primary-bg-hover: #{$purple-500};
+        --color-btn-primary-text: #{$light-100};
+        --color-btn-outline: #{$purple-700};
+    }
+}
+
+@media all and (max-width: 450px) {
+    :root {
+        --border-radius-card: #{$border-radius-small-card};
+    }
+}
