@@ -1,7 +1,29 @@
 
 
+.table-group {
+  padding: 0.5rem 0;
+}
+
+
+
 .table-footer-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-right: 70px;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--color-primary-medium);
+}
+
+.MuiTableCell-head {
+  > div, span {
+    color: var(--color-text-subtext);
+    transition: 0.05s linear color;
+    &:hover {
+      color: var(--color-text-body);
+    }
+  }
+}
+.MuiTablePagination-root {
+  color: var(--color-text-subtext);
 }

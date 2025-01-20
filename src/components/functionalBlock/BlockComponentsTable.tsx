@@ -2,6 +2,7 @@ import { MaterialReactTable, useMaterialReactTable } from "material-react-table"
 import { useMemo } from "react";
 import FunctionalBlockType from "../../types/FunctionalBlockType";
 import ComponentType from "../../types/ComponentType";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material";
 
 interface Props {
   block: FunctionalBlockType
@@ -19,6 +20,7 @@ const BlockComponentsTable = ({block}: Props) => {
       {
         accessorKey: 'type', 
         header: 'Type',
+        Cell: ({ cell }: {cell: {getValue: () => string}}) => (cell?.getValue()?.includes("COMPONENT_TYPE") ? cell?.getValue().split("COMPONENT_TYPE_")[1] : cell?.getValue()),
         
       },
       {
@@ -60,6 +62,29 @@ const BlockComponentsTable = ({block}: Props) => {
     enableDensityToggle: false,
     enableHiding: false,
   });
+  
+  const globalTheme = useTheme();
+  console.log(globalTheme)
+  const theme = createTheme({
+    palette: {
+      mode: globalTheme.palette.mode, //let's use the same dark/light mode as the global theme
+      primary: {
+        contrastText: "rgba(0, 0, 0, 0.87)",
+        dark: "#6642f5",
+        light: "#ac98f5",
+        main: "#9e90f9",
+      }, //swap in the secondary color as the primary for the table
+    
+      background: {
+        default:
+          globalTheme.palette.mode === 'light'
+            ? '#f0f0f0' //random light yellow color for the background in light mode
+            : '#000', //pure black table in dark mode for fun
+      },
+    },
+
+
+  });
 
   const getCostTotal = (componentList: ComponentType[]) => {
     return componentList.reduce((accumulator: number, currentValue: ComponentType) => accumulator + (currentValue?.cost || 0), 0);
@@ -67,31 +92,34 @@ const BlockComponentsTable = ({block}: Props) => {
 
   return (  
     <div>
+      <ThemeProvider theme={theme}>
       <div className="table-group essentials">
-        <h3>Essential ({block?.essentialParts?.length || 0})</h3>
-        <MaterialReactTable table={essentialComponentsTable} />
+        <h3 className="sub-title">Essential ({block?.essentialParts?.length || 0})</h3>
+        <ThemeProvider theme={theme}>
+        <MaterialReactTable table={essentialComponentsTable} /></ThemeProvider>
         <div className="table-footer-row">
-          <div className="cell">Subtotal</div>
+          <div className="cell sub-text">Subtotal</div>
           <div className="cell">{USDollar.format(getCostTotal(block?.essentialParts || []) || 0)}</div>
         </div>
       </div>
 
       <div className="table-group passives">
-        <h3>Passive ({block?.passives?.length || 0})</h3>
+        <h3 className="sub-title">Passive ({block?.passives?.length || 0})</h3>
         <MaterialReactTable table={passiveComponentsTable} />
         <div className="table-footer-row">
-          <div className="cell">Subtotal</div>
+          <div className="cell sub-text">Subtotal</div>
           <div className="cell">{USDollar.format(getCostTotal(block?.passives || []) || 0)}</div>
         </div>
       </div>
 
       <div className="table-group total">
-        <h3>Total </h3>
+        <h3 className="sub-title">Total </h3>
         <div className="table-footer-row">
           <div className="cell">{(block?.essentialParts?.length || 0) + (block?.passives?.length || 0) } Components</div>
           <div className="cell">{USDollar.format((getCostTotal(block?.essentialParts || []) || 0) + (getCostTotal(block?.passives || []) || 0))}</div>
         </div>
       </div>
+      </ThemeProvider>
     </div>
   );
 }

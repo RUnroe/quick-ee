@@ -3,17 +3,35 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import './styles/index.scss';
 import Home from './pages/Home';
 import FunctionalBlock from './pages/FunctionalBlock';
+import { useMediaQuery, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import React from 'react';
 
 
 function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+
   return (
-    <BrowserRouter>
-    {/* <NavigationMenu onHomePage={onHomePage}/> */}
-    
-    <main id="main">
-      <RoutesModule />
-    </main>
-  </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+      {/* <NavigationMenu onHomePage={onHomePage}/> */}
+      
+      <main id="main">
+        <RoutesModule />
+      </main>
+    </BrowserRouter>
+  </ThemeProvider>
   );
 }
 
