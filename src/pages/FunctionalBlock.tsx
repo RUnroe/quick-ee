@@ -17,18 +17,24 @@ const FunctionalBlock = () => {
     <main className="page" id="functionalBlock">
       {!block ? <h1>Functional Block Not Found</h1> : 
       <>
-        <h1>{block.name}</h1>
-
-        <Card>
-          <h2>Components</h2>
-          <BlockComponentsTable block={block} />
-        </Card>
-        <Card>
-          <h2>Image</h2>
-        </Card>
-        <Card>
-          <h2>Notes</h2>
-        </Card>
+        <div className="top-bar">
+          <h1>{block.name}</h1>
+        </div>
+        
+        <section className="grid">
+          <Card>
+            <h2>Components</h2>
+            <BlockComponentsTable block={block} />
+          </Card>
+          <section className="column">
+            <Card>
+              <h2>Image</h2>
+            </Card>
+            <Card>
+              <h2>Notes</h2>
+            </Card>
+          </section>
+        </section>
       </>
       }
     </main>

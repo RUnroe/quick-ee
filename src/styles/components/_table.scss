@@ -24,6 +24,17 @@
     }
   }
 }
+
+.MuiIconButton-root {
+  svg {
+    fill: var(--color-text-subtext);
+    transition: 0.05s linear fill;
+    &:hover {
+      fill: var(--color-text-body);
+    }
+  }
+}
+
 .MuiTablePagination-root {
   color: var(--color-text-subtext);
 }
