@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import './styles/index.scss';
 import Home from './pages/Home';
+import FunctionalBlock from './pages/FunctionalBlock';
 
 
 function App() {
@@ -25,7 +26,11 @@ const RoutesModule = ({}) => {
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
-      <Route path="/" element={<Navigate to={{pathname: '/'}} />} />
+      {/* <Route path="/block/search" element={} /> */}
+      {/* <Route path="/block/compare/:blockId/:secondBlockId" element={} /> */}
+      <Route path="/block/view/:blockId" element={<FunctionalBlock/>} />
+      {/* Catch all block */}
+      <Route path="*" element={<Home/>} /> 
     </Routes>
     
   )

@@ -1,0 +1,190 @@
+{
+  "blocks": [
+    {
+      "name": "5v -> 3v3 buck",
+      "essentialParts": [
+        {
+          "type": "COMPONENT_TYPE_CHIP",
+          "genericDescription": "5v -> 3v3 step-down regulator",
+          "cost": 0.96,
+          "footprints": [
+            "SOT-23-6"
+          ],
+          "suggestedPns": [
+            "TPS560430X3F"
+          ],
+          "datasheetUrls": [
+            "https://www.ti.com/lit/ds/symlink/tps560430.pdf"
+          ]
+        }
+      ],
+      "passives": [
+        {
+          "type": "COMPONENT_TYPE_CAPACITOR",
+          "value": "2.2uF",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_CAPACITOR",
+          "value": "100nF",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_CAPACITOR",
+          "value": "22uF",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_RESISTOR",
+          "value": "47k",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_RESISTOR",
+          "value": "3k9",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_RESISTOR",
+          "value": "22k",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_RESISTOR",
+          "value": "100R",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_INDUCTOR",
+          "value": "12uH",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        }
+      ],
+      "powerOptions": [
+        {
+          "voltages": [
+            5.0
+          ]
+        }
+      ],
+      "implNotes": [
+        "47k + 3k9 nominally 51k",
+        "22k + 100R nominally 22k1 (exact)"
+      ]
+    },
+    {
+      "name": "USB2 C Receptacle",
+      "essentialParts": [
+        {
+          "type": "COMPONENT_TYPE_CONNECTOR",
+          "genericDescription": "USB C receptacle",
+          "cost": 1.14,
+          "notes": [
+            "only need about 8 pins for USB 2: Vbus, GND, 2xCC, 2xD+, 2xD-"
+          ],
+          "suggestedPns": [
+            "12401610E4#2A",
+            "12401598E4#2A"
+          ],
+          "datasheetUrls": [
+            "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/c12401610_c.pdf",
+            "https://www.amphenol-cs.com/media/wysiwyg/files/drawing/12401598xxx2a.pdf"
+          ],
+          "purchaseUrls": [
+            "https://www.digikey.com/en/products/detail/amphenol-cs-commercial-products/12401610E4-2A/5775519",
+            "https://www.digikey.com/en/products/detail/amphenol-cs-commercial-products/12401598E4-2A/6051824"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_DIODE",
+          "genericDescription": "USB ESD diodes",
+          "cost": 0.32,
+          "notes": [
+            "can use similar spec bidirectional diodes instead, but need two. this chip does both in flow-thru pinout and suppresses spikes on Vbus"
+          ],
+          "footprints": [
+            "XSON6 SOT886"
+          ],
+          "suggestedPns": [
+            "PRTR5V0U2F,115"
+          ],
+          "datasheetUrls": [
+            "https://assets.nexperia.com/documents/data-sheet/PRTR5V0U2F_PRTR5V0U2K.pdf"
+          ],
+          "purchaseUrls": [
+            "https://www.digikey.com/en/products/detail/nexperia-usa-inc/PRTR5V0U2F-115/1992982"
+          ]
+        },
+        {
+          "genericDescription": "1.1 A fuse",
+          "value": "1.1 A",
+          "cost": 0.19,
+          "notes": [
+            "for protection of remote device, not local"
+          ],
+          "footprints": [
+            "1812"
+          ],
+          "suggestedPns": [
+            "0ZCG0110FF2C"
+          ],
+          "datasheetUrls": [
+            "https://www.belfuse.com/resources/datasheets/circuitprotection/ds-cp-0zcg-series.pdf"
+          ],
+          "purchaseUrls": [
+            "https://www.digikey.com/en/products/detail/bel-fuse-inc/0ZCG0110FF2C/4156325"
+          ]
+        }
+      ],
+      "passives": [
+        {
+          "type": "COMPONENT_TYPE_RESISTOR",
+          "value": "5k1",
+          "tolerance": "1%",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        },
+        {
+          "type": "COMPONENT_TYPE_RESISTOR",
+          "value": "5k1",
+          "tolerance": "1%",
+          "cost": 0.1,
+          "footprints": [
+            "0402"
+          ]
+        }
+      ],
+      "implNotes": [
+        "CC config permits 900 mA power draw"
+      ],
+      "schematicUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/ARIN_logo.svg/399px-ARIN_logo.svg.png",
+      "layoutUrl": "https://www.iana.org/_img/2022/iana-logo-header.svg"
+    }
+  ]
+}
