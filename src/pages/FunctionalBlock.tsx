@@ -11,7 +11,6 @@ const FunctionalBlock = () => {
   console.log(functionalBlocks, parseInt(blockId || ''));
 
   const [block] = useState<FunctionalBlockType>(functionalBlocks.blocks?.[parseInt(blockId || '')]);
-  console.log(block)
  
   return (
     <main className="page" id="functionalBlock">

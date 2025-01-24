@@ -1,4 +1,4 @@
-import { MaterialReactTable, useMaterialReactTable } from "material-react-table";
+import { MaterialReactTable, MRT_Row, useMaterialReactTable } from "material-react-table";
 import { useMemo } from "react";
 import FunctionalBlockType from "../../types/FunctionalBlockType";
 import ComponentType from "../../types/ComponentType";
@@ -20,7 +20,10 @@ const BlockComponentsTable = ({block}: Props) => {
       {
         accessorKey: 'type', 
         header: 'Type',
-        Cell: ({ cell }: {cell: {getValue: () => string}}) => (cell?.getValue()?.includes("COMPONENT_TYPE") ? cell?.getValue().split("COMPONENT_TYPE_")[1] : cell?.getValue()),
+        Cell: ({ row }: {row: MRT_Row<ComponentType>}) => (
+          row.original?.genericDescription || 
+          (row.original?.type?.includes("COMPONENT_TYPE") ? row.original?.type?.split("COMPONENT_TYPE_")[1] : row.original?.type)
+        ),
         
       },
       {
