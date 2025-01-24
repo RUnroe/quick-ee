@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import BlockComponentsTable from "../components/functionalBlock/BlockComponentsTable";
 import FunctionalBlockType from "../types/FunctionalBlockType";
+import BlockNotes from "../components/functionalBlock/BlockNotes";
 
 
 const FunctionalBlock = () => {
@@ -31,6 +32,7 @@ const FunctionalBlock = () => {
             </Card>
             <Card>
               <h2>Notes</h2>
+              <BlockNotes block={block} />
             </Card>
           </section>
         </section>
