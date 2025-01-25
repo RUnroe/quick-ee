@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import FunctionalBlockType from "../../types/FunctionalBlockType";
 import ComponentType from "../../types/ComponentType";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material";
+import { USDollar } from "../../util/common/stringFormatters";
 
 interface Props {
   block: FunctionalBlockType
@@ -10,10 +11,6 @@ interface Props {
 
 const BlockComponentsTable = ({block}: Props) => {
 
-  const USDollar = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
   
   const componentColumns = useMemo(
     () => [
