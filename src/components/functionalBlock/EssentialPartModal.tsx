@@ -5,16 +5,15 @@ import DataPoint from "../DataPoint";
 import Modal from "../Modal";
 
 interface Props {
-  essentialPart: ComponentType,
-  isOpen: boolean,
-  setIsOpen: (x: boolean) => {} 
+  essentialPart: ComponentType | null,
+  handleClose: () => void
 }
 
-const EssentialPartModal = ({essentialPart, isOpen, setIsOpen}: Props) => {
+const EssentialPartModal = ({essentialPart, handleClose}: Props) => {
   return ( 
-    isOpen ?  
+    essentialPart ?  
     <Modal
-      handleClose={() => setIsOpen(false)}
+      handleClose={handleClose}
       title={essentialPart?.genericDescription || 
         (essentialPart?.type?.includes("COMPONENT_TYPE") ? essentialPart?.type?.split("COMPONENT_TYPE_")[1] : essentialPart?.type) || 
         'Unnamed Essential Part'
@@ -23,35 +22,46 @@ const EssentialPartModal = ({essentialPart, isOpen, setIsOpen}: Props) => {
       body={
         <div>
           <DataPoint label="Type" data={essentialPart?.type} />
-          <div>
-            <DataPoint label="Cost" data={essentialPart?.cost ? USDollar.format(essentialPart.cost) : 'Not Found'} />
-            {essentialPart?.purchaseUrls?.map(url => (
-              <a 
-                target="_blank"
-                href={url}
-              >
-                {getDomainFromLink(url)}
-              </a>
-            ))}
-          </div>
+
 
           <DataPoint label="Notes"> 
             {essentialPart?.notes?.length ? 
               <ul>
-                {essentialPart?.notes?.map((note: string) => (
-                  <li>{note}</li>
+                {essentialPart?.notes?.map((note: string, index: number) => (
+                  <li key={`note-${index}`}>{note}</li>
                 ))}
               </ul>
             : <p>No Notes Found</p>}
           </DataPoint>
 
-          <DataPoint label="Datasheet Links"> 
-            {essentialPart?.datasheetUrls?.length ? 
+
+          <DataPoint label="Cost" data={essentialPart?.cost ? USDollar.format(essentialPart.cost) : 'Not Found'} />
+          <DataPoint label="Purchase Links"> 
+            {essentialPart?.purchaseUrls?.length ? 
               <ul>
-                {essentialPart?.datasheetUrls?.map(url => (
+                {essentialPart?.purchaseUrls?.map((url: string, index: number) => (
                   <a 
                     target="_blank"
                     href={url}
+                    key={`purchase-url-${index}`}
+                  >
+                    {getDomainFromLink(url)}
+                  </a>
+                ))}
+              </ul>
+            : <p>No Links Found</p>}
+          </DataPoint>
+
+         
+
+          <DataPoint label="Datasheet Links"> 
+            {essentialPart?.datasheetUrls?.length ? 
+              <ul>
+                {essentialPart?.datasheetUrls?.map((url: string, index: number) => (
+                  <a 
+                    target="_blank"
+                    href={url}
+                    key={`data-url-${index}`}
                   >
                     {getDomainFromLink(url)}
                   </a>
@@ -66,7 +76,7 @@ const EssentialPartModal = ({essentialPart, isOpen, setIsOpen}: Props) => {
       footer={
         <button 
           className="btn secondary" 
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
         >
           Close
         </button>

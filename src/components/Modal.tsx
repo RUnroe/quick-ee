@@ -5,12 +5,13 @@ interface Props {
   body?: ReactNode,
   footer?: ReactNode,
   className?: string,
-  handleClose: () => {}
+  handleClose: () => void
 
 }
 
 const Modal = ({title, body, footer, className, handleClose}: Props) => {
-  return (  
+  return (
+    <>  
     <section className={`modal ${className || ''}`}>
       <div className="modal-header">
         {title ? <h3>{title}</h3> : null }
@@ -33,6 +34,8 @@ const Modal = ({title, body, footer, className, handleClose}: Props) => {
         </div>
       : null}
     </section>
+    <div className="modal-screen"></div>
+    </>
   );
 }
  

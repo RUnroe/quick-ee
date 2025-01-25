@@ -24,8 +24,8 @@ const BlockNotes = ({block}: Props) => {
   }
   return (  
     <ul>
-      {getAllNotes(block).map((note: string) => (
-        <li>{note}</li>
+      {getAllNotes(block).map((note: string, index: number) => (
+        <li key={`global-note-${index}`}>{note}</li>
       ))}
     </ul>
   );

@@ -1,9 +1,10 @@
 import { MaterialReactTable, MRT_Row, useMaterialReactTable } from "material-react-table";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import FunctionalBlockType from "../../types/FunctionalBlockType";
 import ComponentType from "../../types/ComponentType";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material";
 import { USDollar } from "../../util/common/stringFormatters";
+import EssentialPartModal from "./EssentialPartModal";
 
 interface Props {
   block: FunctionalBlockType
@@ -11,6 +12,7 @@ interface Props {
 
 const BlockComponentsTable = ({block}: Props) => {
 
+  const [selectedEssentialPart, setSelectedEssentialPart] = useState<ComponentType | null>(null);
   
   const componentColumns = useMemo(
     () => [
@@ -51,6 +53,17 @@ const BlockComponentsTable = ({block}: Props) => {
     enablePagination: true,
     enableDensityToggle: false,
     enableHiding: false,
+
+    muiTableBodyRowProps: ({ row }) => ({
+      onClick: () => {
+        //On table row click, set the selected essential part. This is used for opening a modal to display extra details
+        setSelectedEssentialPart(row.original);
+        //console.log(block?.essentialParts?.indexOf(row.original));
+      },
+      sx: {
+        cursor: 'pointer',
+      },
+    }),
   });
 
   const passiveComponentsTable = useMaterialReactTable({
@@ -64,22 +77,22 @@ const BlockComponentsTable = ({block}: Props) => {
   });
   
   const globalTheme = useTheme();
-  console.log(globalTheme)
+
   const theme = createTheme({
     palette: {
-      mode: globalTheme.palette.mode, //let's use the same dark/light mode as the global theme
+      mode: globalTheme.palette.mode, 
       primary: {
         contrastText: "rgba(0, 0, 0, 0.87)",
         dark: "#6642f5",
         light: "#ac98f5",
         main: "#9e90f9",
-      }, //swap in the secondary color as the primary for the table
+      }, 
     
       background: {
         default:
           globalTheme.palette.mode === 'light'
-            ? '#f0f0f0' //random light yellow color for the background in light mode
-            : '#000', //pure black table in dark mode for fun
+            ? '#f0f0f0' 
+            : '#000', 
       },
     },
 
@@ -120,6 +133,7 @@ const BlockComponentsTable = ({block}: Props) => {
         </div>
       </div>
       </ThemeProvider>
+      <EssentialPartModal essentialPart={selectedEssentialPart} handleClose={() => setSelectedEssentialPart(null)} />
     </div>
   );
 }
