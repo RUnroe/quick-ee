@@ -14,7 +14,8 @@
 .modal {
   position: fixed;
   z-index: 50;
-  width: min(90%, 80vw);
+  width: 90%;
+  max-width: 60rem;
   transform: translateX(-50%);
   left: 50%;
   top: 10%;

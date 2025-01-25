@@ -31,12 +31,20 @@ $light-700: #a0a0a0;
 $light-200: #F0F0F0;
 $light-100: #FFFFFF;
 
+$red-500: #FF6D6D;
+
+$green-500: #1FDFBD;
+
 
 :root {
     --border-radius-button: #{$border-radius-button};
     --border-radius-card: #{$border-radius-card};
     
     --border: 1px solid #{$dark-100};
+
+    --color-danger: #{$red-500};
+    --color-success: #{$green-500};
+
 
     --color-bg-primary: #{$light-200};
     --color-bg-secondary: #{$light-100};

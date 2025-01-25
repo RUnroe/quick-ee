@@ -21,7 +21,7 @@ const EssentialPartModal = ({essentialPart, handleClose}: Props) => {
 
       body={
         <div>
-          <DataPoint label="Type" data={essentialPart?.type} />
+          <DataPoint label="Type" data={essentialPart?.type || "Not Found"} />
 
 
           <DataPoint label="Notes"> 
@@ -40,13 +40,14 @@ const EssentialPartModal = ({essentialPart, handleClose}: Props) => {
             {essentialPart?.purchaseUrls?.length ? 
               <ul>
                 {essentialPart?.purchaseUrls?.map((url: string, index: number) => (
+                  <li key={`purchase-url-${index}`} className="url">
                   <a 
                     target="_blank"
                     href={url}
-                    key={`purchase-url-${index}`}
                   >
                     {getDomainFromLink(url)}
                   </a>
+                  </li>
                 ))}
               </ul>
             : <p>No Links Found</p>}
@@ -58,13 +59,14 @@ const EssentialPartModal = ({essentialPart, handleClose}: Props) => {
             {essentialPart?.datasheetUrls?.length ? 
               <ul>
                 {essentialPart?.datasheetUrls?.map((url: string, index: number) => (
+                  <li key={`data-url-${index}`} className="url">
                   <a 
                     target="_blank"
                     href={url}
-                    key={`data-url-${index}`}
                   >
                     {getDomainFromLink(url)}
                   </a>
+                </li>
                 ))}
               </ul>
             : <p>No Links Found</p>}

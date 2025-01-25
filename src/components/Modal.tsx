@@ -17,7 +17,7 @@ const Modal = ({title, body, footer, className, handleClose}: Props) => {
         {title ? <h3>{title}</h3> : null }
 
         <button 
-          className="close-button"
+          className="button close"
           onClick={handleClose}
         >
         ×
