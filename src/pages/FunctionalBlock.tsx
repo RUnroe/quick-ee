@@ -17,9 +17,9 @@ const FunctionalBlock = () => {
     <main className="page" id="functionalBlock">
       {!block ? <h1>Functional Block Not Found</h1> : 
       <>
-        <div className="top-bar">
+        <section className="top-bar">
           <h1>{block.name}</h1>
-        </div>
+        </section>
         
         <section className="grid">
           <Card>
@@ -28,7 +28,7 @@ const FunctionalBlock = () => {
           </Card>
           <section className="column">
             <Card>
-              <h2>Image</h2>
+              <h2>*Image*</h2>
             </Card>
             <Card>
               <h2>Notes</h2>

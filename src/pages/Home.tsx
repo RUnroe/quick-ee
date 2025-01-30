@@ -1,14 +1,23 @@
 import Card from "../components/Card";
+import FunctionalBlocksTable from "../components/functionalBlockList/FunctionalBlocksTable";
+import functionalBlocks from '../blocks.json';
 
 const Home = () => {
   return (
     <main className="page" id="home">
-      <h1>Home Page</h1>
+      <section className="top-bar">
+        <h1>Functional Blocks</h1>
+      </section>
+      
+      <section className="grid">
+        <div>
+          <h2>*Sort / Filter*</h2>
+        </div>
 
-      <Card>
-        <h2>Card content</h2>
-        <p>This is a paragraph in the card</p>
-      </Card>
+        <Card>
+          <FunctionalBlocksTable blocks={functionalBlocks.blocks} />
+        </Card>
+      </section>
     </main>
   );
 }
