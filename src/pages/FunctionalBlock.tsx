@@ -45,7 +45,7 @@ const FunctionalBlock = () => {
           </div>
           <Link 
             to={`/`}
-            className="flex align-center"
+            className="flex align-center fit-content"
           > 
             <LeftChevronIcon className="primary"/>
             Back to List View
