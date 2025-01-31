@@ -6,6 +6,7 @@ import BlockComponentsTable from "../components/functionalBlock/BlockComponentsT
 import FunctionalBlockType from "../types/FunctionalBlockType";
 import BlockNotes from "../components/functionalBlock/BlockNotes";
 import { LeftChevronIcon } from "../assets/icons/icons";
+import { Slide, ToastContainer, toast } from 'react-toastify';
 
 
 const FunctionalBlock = () => {
@@ -16,7 +17,12 @@ const FunctionalBlock = () => {
  
 
   const copySchematicToClipboard = () => {
-
+    if(block && block.schematicUrl) {
+      navigator.clipboard.writeText(block.schematicUrl);
+      //Let user know the copy was successful
+      toast.success("Copied!");
+    }
+   
   }
 
 
@@ -24,6 +30,7 @@ const FunctionalBlock = () => {
     <main className="page" id="functionalBlock">
       {!block ? <h1>Functional Block Not Found</h1> : 
       <>
+        <ToastContainer autoClose={1500} theme="colored" position="top-center" transition={Slide}/>
         <section className="top-bar">
           <div className="row">
             <h1>{block.name}</h1>
