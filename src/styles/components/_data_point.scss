@@ -1,8 +1,13 @@
 .data-point {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   
+  font-size: 1.05rem;
+
   .label {
     // color: var(--color-text-subtitle);
     color: var(--color-text-subtext);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.9rem;
   }
 }

@@ -18,7 +18,7 @@ const BlockComponentsTable = ({block}: Props) => {
     () => [
       {
         accessorKey: 'type', 
-        header: 'Type',
+        header: 'Descriptor',
         Cell: ({ row }: {row: MRT_Row<ComponentType>}) => (
           row.original?.genericDescription || 
           (row.original?.type?.includes("COMPONENT_TYPE") ? row.original?.type?.split("COMPONENT_TYPE_")[1] : row.original?.type)
