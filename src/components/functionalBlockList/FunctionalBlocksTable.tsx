@@ -31,12 +31,14 @@ const FunctionalBlocksTable = ({ blocks }: Props) => {
 
         Cell: ({ row }: { row: MRT_Row<FunctionalBlockType> }) =>
           blocks.indexOf(row.original) !== null ? (
-            <Link
-              to={`/block/view/${blocks.indexOf(row.original)}`}
-              className="button"
-            >
-              View
-            </Link>
+            <div style={{ textAlign: "right" }}>
+              <Link
+                to={`/block/view/${blocks.indexOf(row.original)}`}
+                className="button primary"
+              >
+                View
+              </Link>
+            </div>
           ) : (
             ""
         ),

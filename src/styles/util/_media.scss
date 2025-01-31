@@ -1,0 +1,13 @@
+
+
+.icon {
+  align-self: center;
+  fill: var(--color-text-body);
+  stroke: var(--color-text-body);
+
+  &.primary {
+    fill: var(--color-primary-light);
+  }
+}
+
+

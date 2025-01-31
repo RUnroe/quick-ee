@@ -28,6 +28,7 @@ $purple-500: #7362FF;
 $purple-400: #887AFF;
 
 $light-700: #a0a0a0;
+$light-400: #CCC;
 $light-200: #F0F0F0;
 $light-100: #FFFFFF;
 
@@ -60,12 +61,14 @@ $green-500: #1FDFBD;
     --color-text-subtitle: #{$purple-400};
     --color-text-body: #{$dark-100};
     --color-text-subtext: #{$light-700};
+    --color-text-disabled: #{$light-400};
     --color-text-link: #{$purple-500};
 
     --color-btn-primary-background: #{$purple-700};
     --color-btn-primary-bg-hover: #{$purple-500};
     --color-btn-primary-text: #{$light-100};
     --color-btn-outline: #{$purple-700};
+    --color-btn-disabled: #{$dark-100};
 }
 
 @media (prefers-color-scheme: dark), (prefers-color-scheme: no-preference) {
@@ -86,12 +89,14 @@ $green-500: #1FDFBD;
         --color-text-subtitle: #{$purple-400};
         --color-text-body: #{$light-200};
         --color-text-subtext: #{$light-700};
+        --color-text-disabled: #{$light-400};
         --color-text-link: #{$purple-400};
 
-        --color-btn-primary-background: #{$purple-700};
+        --color-btn-primary-bg: #{$purple-700};
         --color-btn-primary-bg-hover: #{$purple-500};
         --color-btn-primary-text: #{$light-100};
         --color-btn-outline: #{$purple-700};
+        --color-btn-disabled: #{$dark-100};
     }
 }
 

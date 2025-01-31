@@ -1,10 +1,11 @@
 import Card from "../components/Card";
 import functionalBlocks from '../blocks.json';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import BlockComponentsTable from "../components/functionalBlock/BlockComponentsTable";
 import FunctionalBlockType from "../types/FunctionalBlockType";
 import BlockNotes from "../components/functionalBlock/BlockNotes";
+import { LeftChevronIcon } from "../assets/icons/icons";
 
 
 const FunctionalBlock = () => {
@@ -13,12 +14,35 @@ const FunctionalBlock = () => {
 
   const [block] = useState<FunctionalBlockType>(functionalBlocks.blocks?.[parseInt(blockId || '')]);
  
+
+  const copySchematicToClipboard = () => {
+
+  }
+
+
   return (
     <main className="page" id="functionalBlock">
       {!block ? <h1>Functional Block Not Found</h1> : 
       <>
         <section className="top-bar">
-          <h1>{block.name}</h1>
+          <div className="row">
+            <h1>{block.name}</h1>
+            <button
+              className="button primary"
+              onClick={copySchematicToClipboard}
+              disabled={!block?.schematicUrl}
+              title={block?.schematicUrl ? "Copy Schematic URL to Clipboard" : "Schematic URL Not Found"}
+            > 
+              Copy to Clipboard
+            </button>
+          </div>
+          <Link 
+            to={`/`}
+            className="flex align-center"
+          > 
+            <LeftChevronIcon className="primary"/>
+            Back to List View
+          </Link>
         </section>
         
         <section className="grid">
