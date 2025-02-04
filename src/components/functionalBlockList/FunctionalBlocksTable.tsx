@@ -3,10 +3,12 @@ import {
   MRT_Row,
   useMaterialReactTable,
 } from "material-react-table";
-import { useMemo } from "react";
-import FunctionalBlockType from "../../types/FunctionalBlockType";
+import { useEffect, useMemo, useState } from "react";
+import FunctionalBlockType, { DisplayFunctionalBlockType } from "../../types/FunctionalBlockType";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import { costCalculator } from "../../util/common/costCalculator";
+import { USDollar } from "../../util/common/stringFormatters";
 
 interface Props {
   blocks: FunctionalBlockType[];
@@ -15,11 +17,48 @@ interface Props {
 //WIP. Table for index page to display top level of functional components (name)
 
 const FunctionalBlocksTable = ({ blocks }: Props) => {
+
+  const [mappedBlocks, setMappedBlocks] = useState<DisplayFunctionalBlockType[]>([]);
+
+  useEffect(() => {
+    if(blocks) {
+      mapBlocks();
+    }
+  }, [blocks]);
+
+  const mapBlocks = () => {
+    setMappedBlocks(blocks.map(block => ({
+      ...block,
+      totalCost: costCalculator(block),
+      componentCount: (block?.essentialParts?.length || 0) + (block?.passives?.length || 0)
+    })))
+  }
+
+
   const columns = useMemo(
     () => [
       {
         accessorKey: "name",
         header: "Block",
+      },
+      {
+        accessorKey: "componentCount",
+        header: "# of Components",
+      },
+      {
+        accessorKey: "boardArea",
+        header: "Board Area",
+      },
+      {
+        accessorKey: "totalCost",
+        header: "Cost Estimate",
+        Cell: ({ row }: { row: MRT_Row<DisplayFunctionalBlockType> }) => (
+          <span>{row.original?.totalCost ? USDollar.format(row.original?.totalCost) : ''}</span>
+        ),
+      },
+      {
+        accessorKey: "powerRails",
+        header: "Power Rails",
       },
       {
         accessorKey: "view",
@@ -60,7 +99,7 @@ const FunctionalBlocksTable = ({ blocks }: Props) => {
 
   const essentialComponentsTable = useMaterialReactTable({
     columns: columns,
-    data: blocks || [],
+    data: mappedBlocks || [],
     enableColumnOrdering: false,
     enableRowSelection: false,
     enablePagination: true,

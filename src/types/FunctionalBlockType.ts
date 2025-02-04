@@ -10,3 +10,9 @@ export default interface FunctionalBlockType {
   passives?: ComponentType[];
   powerOptions?: any[];
 }
+
+
+export interface DisplayFunctionalBlockType extends FunctionalBlockType {
+  totalCost?: number,
+  componentCount?: number,
+}
