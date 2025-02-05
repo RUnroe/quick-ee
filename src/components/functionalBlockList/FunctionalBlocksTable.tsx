@@ -68,11 +68,11 @@ const FunctionalBlocksTable = ({ blocks }: Props) => {
         enableSorting: false,
         enableColumnActions: false,
 
-        Cell: ({ row }: { row: MRT_Row<FunctionalBlockType> }) =>
-          blocks.indexOf(row.original) !== null ? (
+        Cell: ({ row }: { row: MRT_Row<DisplayFunctionalBlockType> }) =>
+          mappedBlocks.indexOf(row.original) !== null ? (
             <div style={{ textAlign: "right" }}>
               <Link
-                to={`/block/view/${blocks.indexOf(row.original)}`}
+                to={`/block/view/${mappedBlocks.indexOf(row.original)}`}
                 className="button primary"
               >
                 View
@@ -87,14 +87,9 @@ const FunctionalBlocksTable = ({ blocks }: Props) => {
       //   header: 'Footprints',
       //   Cell: ({ cell }: {cell: {getValue: () => string[]}}) => cell?.getValue()?.join(", "),
       // },
-      // {
-      //   accessorKey: 'cost',
-      //   header: 'Cost',
-      //   size: 10,
-      //   Cell: ({ cell }: {cell: {getValue: () => string}}) => USDollar.format(parseFloat(cell?.getValue())),
-      // },
+
     ],
-    []
+    [mappedBlocks]
   );
 
   const essentialComponentsTable = useMaterialReactTable({
