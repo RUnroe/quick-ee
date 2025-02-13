@@ -47,7 +47,7 @@ const FunctionalBlocksTable = ({ blocks }: Props) => {
       },
       {
         accessorKey: "boardArea",
-        header: "Board Area",
+        header: "Board Area", //TODO: Verify this data displays properly once it lives in the data object
       },
       {
         accessorKey: "totalCost",
@@ -58,7 +58,7 @@ const FunctionalBlocksTable = ({ blocks }: Props) => {
       },
       {
         accessorKey: "powerRails",
-        header: "Power Rails",
+        header: "Power Rails",//TODO: Verify this data displays properly once it lives in the data object
       },
       {
         accessorKey: "view",

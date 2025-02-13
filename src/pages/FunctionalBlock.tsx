@@ -5,7 +5,7 @@ import { useState } from "react";
 import BlockComponentsTable from "../components/functionalBlock/BlockComponentsTable";
 import FunctionalBlockType from "../types/FunctionalBlockType";
 import BlockNotes from "../components/functionalBlock/BlockNotes";
-import { LeftChevronIcon } from "../assets/icons/icons";
+import { FunctionalBlockIcon, LeftChevronIcon, NotesIcon } from "../assets/icons/icons";
 import { Slide, ToastContainer, toast } from 'react-toastify';
 
 
@@ -54,7 +54,10 @@ const FunctionalBlock = () => {
         
         <section className="grid">
           <Card>
-            <h2>Components</h2>
+            <h2>
+              <FunctionalBlockIcon />
+              Components
+            </h2>
             <BlockComponentsTable block={block} />
           </Card>
           <section className="column">
@@ -62,7 +65,10 @@ const FunctionalBlock = () => {
               <h2>*Image*</h2>
             </Card>
             <Card>
-              <h2>Notes</h2>
+              <h2>
+                <NotesIcon className="large"/>
+                Notes
+              </h2>
               <BlockNotes block={block} />
             </Card>
           </section>

@@ -5,4 +5,10 @@
   border: var(--border);
   box-sizing: border-box;
   width: fit-content;
+
+  h2 .icon {
+    margin-right: 0.5rem;
+    width: fit-content;
+    fill: var(--color-primary-light);
+  }
 }
